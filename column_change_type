@@ -1,0 +1,23 @@
+/* Example: Change a column from character to numeric, and rename */
+
+/* Assume mydata has a character variable oldvar_char that holds numbers as text */
+
+/* Step 1: Convert character to numeric */
+data mydata_num;
+    set mydata;
+    newvar_num = input(oldvar_char, 8.); /* 8. is an example informat, adjust as needed */
+    drop oldvar_char;
+    rename newvar_num = oldvar_char; /* Optional: keep the original name */
+run;
+
+/* Example: Change a column from numeric to character, and rename */
+
+/* Assume mydata has a numeric variable oldvar_num */
+
+/* Step 2: Convert numeric to character */
+data mydata_char;
+    set mydata;
+    newvar_char = put(oldvar_num, 8.); /* 8. is an example format, adjust as needed */
+    drop oldvar_num;
+    rename newvar_char = oldvar_num; /* Optional: keep the original name */
+run;

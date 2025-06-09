@@ -1,0 +1,10 @@
+/* Method 1: Using DATA step with RENAME= option */
+data mydata_renamed;
+    set mydata(rename=(oldname=newname));
+run;
+
+/* Method 2: Using PROC DATASETS (in-place renaming, efficient for large datasets) */
+proc datasets library=work;
+    modify mydata;
+    rename oldname = newname;
+quit;
